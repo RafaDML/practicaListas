@@ -4,11 +4,11 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class BuscarService {
-  server = 'http://pitfic.com/practicas/api-server.php';
+  server = 'http://pitfic.com/practicas/';
   constructor(private http:HttpClient) { }
 
 postData(body){
-  const file = 'api-696New.php';
+  const file = 'api-server.php';
   const options = {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
