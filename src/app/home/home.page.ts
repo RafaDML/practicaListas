@@ -10,8 +10,8 @@ import { async } from 'q';
 })
 export class HomePage {
 
-  variable1: any;
-  variable2: any;
+  Materia: any;
+  respuesta: any;
   constructor(private serv: BuscarService) {
     this.getData();
   }
@@ -22,8 +22,10 @@ export class HomePage {
       tipoMov:'getData2'
     };
   
-    this.variable2 = await this.serv.postData(valores);
-    console.log(this.variable2.result);
+    this.respuesta = await this.serv.postData(valores);
+    this.Materia= this.respuesta.result;
+
+    console.log(this.respuesta.result);
   }
   
 
