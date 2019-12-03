@@ -12,10 +12,19 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal', { static: false }) slides: IonSlides;
   seleccion = true;
   loginUser = {
-    usuario: 'prueba',
+    usuario: '16683196',
     pass: '123',
     tipoMov: 'login'
   };
+  registerUser = {
+    usuario: '778899',
+    nombre:'daniel',
+    correo:'danielgmail.com',
+    telefono:'98',
+    pass:'123',
+    tipoMov:'insertar'
+
+  }
 
   DatosUsuarios: any;
   constructor(
@@ -53,6 +62,18 @@ export class LoginPage implements OnInit {
     if (fRegistro.invalid) {
       return;
     }
+    this.DatosUsuarios = await this.serv.postData(this.registerUser);
+    console.log(this.DatosUsuarios);
+    if (this.DatosUsuarios.success) {
+      /* console.log('entrar');*/
+      // navegar al tabs
+      this.navCtrl.navigateRoot('home', { animated: true });
+      this.storage.set('dataUsarios', this.DatosUsuarios.result);
+    } else {
+      /* console.log('no entrar'); */
+    }
+   
+   
   }
 
   mostrarRegistro() {
