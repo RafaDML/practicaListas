@@ -17,11 +17,11 @@ export class LoginPage implements OnInit {
     tipoMov: 'login'
   };
   registerUser = {
-    usuario: '778899',
-    nombre:'daniel',
-    correo:'danielgmail.com',
-    telefono:'98',
-    pass:'123',
+    usuario: '',
+    nombre:'',
+    correo:'',
+    telefono:'',
+    pass:'',
     tipoMov:'insertar'
 
   }
@@ -67,8 +67,9 @@ export class LoginPage implements OnInit {
     if (this.DatosUsuarios.success) {
       /* console.log('entrar');*/
       // navegar al tabs
-      this.navCtrl.navigateRoot('home', { animated: true });
+      this.navCtrl.navigateRoot('login', { animated: true });
       this.storage.set('dataUsarios', this.DatosUsuarios.result);
+      
     } else {
       /* console.log('no entrar'); */
     }

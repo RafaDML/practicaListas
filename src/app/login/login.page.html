@@ -54,20 +54,21 @@
               <ion-list>
                 <ion-item>
                   <ion-label>Matricula: </ion-label>
-                  <ion-input name="usuario" type="text" required></ion-input>
+                  <ion-input name="usuario" type="text" [(ngModel)]="registerUser.usuario" required></ion-input>
+                  
                 </ion-item>
                 <ion-item>
                   <ion-label>Nombre: </ion-label>
-                  <ion-input name="nombre" type="text" required></ion-input>
+                  <ion-input name="nombre" type="text" [(ngModel)]="registerUser.nombre" required></ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>Correo: </ion-label>
-                  <ion-input name="correo" type="text" required></ion-input>
+                  <ion-input name="correo" type="text" [(ngModel)]="registerUser.correo" required></ion-input>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>Telefono: </ion-label>
-                  <ion-input name="telefono" type="email" required></ion-input>
+                  <ion-input name="telefono" type="email" [(ngModel)]="registerUser.telefono" required></ion-input>
                 </ion-item>
 
                 <ion-item>
@@ -75,6 +76,7 @@
                   <ion-input
                     name="password"
                     type="password"
+                    [(ngModel)]="registerUser.pass"
                     required
                   ></ion-input>
                 </ion-item>
