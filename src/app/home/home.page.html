@@ -27,3 +27,49 @@
   <ion-router-outlet main></ion-router-outlet>
 </ion-app>
 
+<ion-content>
+  <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm">
+          <ion-row>
+            <ion-col>
+              <ion-list>
+                <ion-item>
+                  <ion-label>Materia A Solicitar: </ion-label>
+                  <ion-input name="materia" type="text" required></ion-input>
+                  
+                </ion-item>
+                <ion-item>
+                  <ion-label>Horario Preferido: </ion-label>
+                  <ion-input name="turno" type="text"  required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Fecha: </ion-label>
+                  <ion-input name="fecha" type="date"  required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Horario: </ion-label>
+                  <ion-input name="hora" type="time"  required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Descripción: </ion-label>
+                  <ion-input
+                    name="descripcion"
+                    type="text"
+                   
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="warning" expand="block">
+              Registrar asesoria 
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+</ion-content>

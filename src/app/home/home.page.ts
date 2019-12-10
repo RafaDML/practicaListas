@@ -10,6 +10,16 @@ import { MenuController } from '@ionic/angular';
 })
 export class HomePage {
 
+  registerUser = {
+    materia: '',
+    turno:'',
+    fecha:'',
+    hora:'',
+    descripcion:'',
+    tipoMov:'insertar'
+
+  }
+
   Materia: any;
   respuesta: any;
   constructor(private menu: MenuController) {}
