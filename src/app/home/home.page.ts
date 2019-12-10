@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BuscarService} from '../service/buscar.service'
-import { async } from 'q';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -12,23 +12,22 @@ export class HomePage {
 
   Materia: any;
   respuesta: any;
-  constructor(private serv: BuscarService) {
-    this.getData();
-  }
-
-
-  async getData(){
-    const valores ={
-      tipoMov:'getData2'
-    };
-  
-    this.respuesta = await this.serv.postData(valores);
-    this.Materia= this.respuesta.result;
-
-    console.log(this.respuesta.result);
-  }
+  constructor(private menu: MenuController) {}
   
 
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+
+  openEnd() {
+    this.menu.open('end');
+  }
+
+  openCustom() {
+    this.menu.enable(true, 'custom');
+    this.menu.open('custom');
+  }
 
 }
 

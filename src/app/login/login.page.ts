@@ -3,6 +3,7 @@ import { IonSlides, NavController } from '@ionic/angular';
 import { BuscarService } from '../service/buscar.service';
 import { NgForm } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -30,7 +31,8 @@ export class LoginPage implements OnInit {
   constructor(
     private serv: BuscarService,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -42,6 +44,7 @@ export class LoginPage implements OnInit {
   async login(fLogin: NgForm) {
     /* console.log(fLogin.valid); */
     if (fLogin.invalid) {
+      
       return;
     }
 
@@ -51,27 +54,73 @@ export class LoginPage implements OnInit {
     if (this.DatosUsuarios.success) {
       /* console.log('entrar');*/
       // navegar al tabs
+      this.toastController.create({
+        color: 'success',
+        duration: 2000,
+        message: 'Bienvenido',
+        showCloseButton: true
+      }).then(toast => {
+        toast.present();
+      });
       this.navCtrl.navigateRoot('home', { animated: true });
       this.storage.set('dataUsarios', this.DatosUsuarios.result);
     } else {
       /* console.log('no entrar'); */
+      this.toastController.create({
+        color: 'danger',
+        duration: 2000,
+        message: 'No existe Usuario',
+        showCloseButton: true
+      }).then(toast => {
+        toast.present();
+      });
     }
   }
 
   async registro(fRegistro: NgForm) {
     if (fRegistro.invalid) {
+      this.toastController.create({
+        color: 'danger',
+        duration: 2000,
+        message: 'Registro no válido',
+        showCloseButton: true
+      }).then(toast => {
+        toast.present();
+      });
       return;
     }
+   
+    console.log('entrar');
     this.DatosUsuarios = await this.serv.postData(this.registerUser);
     console.log(this.DatosUsuarios);
+    
+    
+    
     if (this.DatosUsuarios.success) {
-      /* console.log('entrar');*/
+      console.log('no registrado por rt');
       // navegar al tabs
-      this.navCtrl.navigateRoot('login', { animated: true });
+      this.toastController.create({
+        color: 'success',
+        duration: 2000,
+        message: 'Completado',
+        showCloseButton: true
+      }).then(toast => {
+        toast.present();
+      });
+      fRegistro.reset();
+      //this.navCtrl.navigateRoot('home', { animated: true });
       this.storage.set('dataUsarios', this.DatosUsuarios.result);
-      
+
     } else {
-      /* console.log('no entrar'); */
+     
+       console.log('no entrar');  this.toastController.create({
+        color: 'warning',
+        duration: 2000,
+        message: 'Matricula No Registrada Por RT',
+        showCloseButton: true
+      }).then(toast => {
+        toast.present();
+      });
     }
    
    
